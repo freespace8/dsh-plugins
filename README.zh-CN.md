@@ -15,9 +15,6 @@
 
 - [插件列表](#插件列表)
 - [前置条件](#前置条件)
-- [安装](#安装)
-- [更新与卸载](#更新与卸载)
-- [从源码安装](#从源码安装)
 - [开发](#开发)
   - [仓库结构](#仓库结构)
   - [添加新插件](#添加新插件)
@@ -28,54 +25,28 @@
 
 ## 插件列表
 
-| 包 | 说明 | 安装 |
-|---|---|---|
-| [@freespace8/dsh-deepseek-balance](plugins/dsh-deepseek-balance/README.md) | Web GUI 会话头部显示官方 DeepSeek API 余额胶囊；非官方模型自动隐藏；点击刷新 + 定时刷新 | `dsh plugin --profile web add @freespace8/dsh-deepseek-balance` |
-| [@freespace8/dsh-free-vision](plugins/dsh-free-vision/README.md) | 为无视觉能力的模型提供本地识图：OCR、表格结构识别、无文字图片语义描述（macOS Vision，完全本地），含 Web GUI 粘贴图片→本地路径 | `dsh plugin --profile web add @freespace8/dsh-free-vision` |
-| [@freespace8/dsh-at-file](plugins/dsh-at-file/README.md) | Codex 风格 `@` 路径引用：输入框输入 `@` 选择工作区文件/文件夹，发送时 host 校验并注入标记（不读文件内容） | `dsh plugin --profile web add @freespace8/dsh-at-file` |
+### @freespace8/dsh-deepseek-balance
+
+Web GUI 会话头部显示官方 DeepSeek API 余额胶囊；非官方模型自动隐藏；点击刷新 + 定时刷新。详见 [README](plugins/dsh-deepseek-balance/README.md)。
+
+![dsh-deepseek-balance 预览](plugins/dsh-deepseek-balance/images/preview.png)
+
+### @freespace8/dsh-free-vision
+
+为无视觉能力的模型提供本地识图：OCR、表格结构识别、无文字图片语义描述（macOS Vision，完全本地），含 Web GUI 粘贴图片→本地路径。详见 [README](plugins/dsh-free-vision/README.md)。
+
+![dsh-free-vision 预览](plugins/dsh-free-vision/images/preview.png)
+
+### @freespace8/dsh-at-file
+
+Codex 风格 `@` 路径引用：输入框输入 `@` 选择工作区文件/文件夹，发送时 host 校验并注入标记（不读文件内容）。详见 [README](plugins/dsh-at-file/README.md)。
+
+![dsh-at-file 预览](plugins/dsh-at-file/images/preview.png)
 
 ## 前置条件
 
 - [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)，带运行中的 `web` profile（Node.js `^22.19.0` 或 `>=24.0.0`）。
-- [pnpm](https://pnpm.io/installation) —— `dsh plugin` 会转发给它（`corepack enable` 也可以）。
 - `dsh-free-vision` 额外要求 **macOS 11+** 与 Xcode Command Line Tools（`xcode-select --install`）。
-
-## 安装
-
-`dsh plugin` 转发给 pnpm，因此可以直接从 npm registry 安装：
-
-```sh
-# 装单个插件
-dsh plugin --profile web add @freespace8/dsh-deepseek-balance
-
-# 一次装多个
-dsh plugin --profile web add @freespace8/dsh-deepseek-balance @freespace8/dsh-free-vision @freespace8/dsh-at-file
-```
-
-安装后**重启目标 profile** 生效（`dsh plugin add` 只改 manifest 与依赖，运行中的实例不热加载新 bundle）。
-
-### 更新与卸载
-
-```sh
-# 升级到最新版本
-dsh plugin --profile web update @freespace8/dsh-deepseek-balance
-
-# 卸载
-dsh plugin --profile web remove @freespace8/dsh-deepseek-balance
-```
-
-`add` 默认装 latest；`update` 拉取最新发布版本。
-
-## 从源码安装
-
-想基于源码改动，或不想等 npm 发布，可以 clone 后用 `file:` 相对路径安装：
-
-```sh
-git clone https://github.com/freespace8/dsh-plugins.git
-dsh plugin --profile web add file:./dsh-plugins/plugins/dsh-deepseek-balance
-```
-
-完整开发流程见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## 开发
 
@@ -96,7 +67,7 @@ plugins/
 2. host 半体放 `src/index.js`（`export const name` + `export const Config` + `apply(ctx, config)`），client 半体放 `lib/client.js`（`window.__ModuleLoader__.load({ id: <包名>, factory })`）；
 3. 三个标识符必须一致：`package.json` 的 name、`cordis.patch.yml` insert 行的 `name`（scoped 名需加引号）、client bundle 的 `id`；
 4. 在 `tests/check.mjs` 里写产物门检查，确保 `npm run check` 通过；
-5. `npm publish` 发布（`publishConfig.access` 已设为 `public`），然后把安装命令更新到本 README 与插件 README。
+5. `npm publish` 发布（`publishConfig.access` 已设为 `public`），然后把插件加进本 README 的[插件列表](#插件列表)。
 
 ### 约定
 

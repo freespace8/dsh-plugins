@@ -6,9 +6,9 @@
 A collection of open-source plugins for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — the plugin-based AI development environment where "everything is a plugin".
 
 Every plugin in this repository is published as an **independent npm package**
-under the `@freespace8` scope and can be installed into any DSH profile on its
-own. Each package ships a host half (Cordis plugin, plain ESM) and a client
-half (browser bundle), with source kept in `plugins/<name>/`.
+under the `@freespace8` scope, installable into any DSH profile on its own.
+Each package ships a host half (Cordis plugin, plain ESM) and a client half
+(browser bundle), with source kept in `plugins/<name>/`.
 
 **English** · [简体中文](README.zh-CN.md)
 
@@ -18,9 +18,6 @@ half (browser bundle), with source kept in `plugins/<name>/`.
 
 - [Plugins](#plugins)
 - [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Update & uninstall](#update--uninstall)
-- [Install from source](#install-from-source)
 - [Development](#development)
   - [Repository layout](#repository-layout)
   - [Adding a new plugin](#adding-a-new-plugin)
@@ -31,62 +28,37 @@ half (browser bundle), with source kept in `plugins/<name>/`.
 
 ## Plugins
 
-| Package | Description | Install |
-|---|---|---|
-| [@freespace8/dsh-deepseek-balance](plugins/dsh-deepseek-balance/README.md) | Official DeepSeek API balance pill in the Web GUI session header. Auto-hidden for non-official models; click-to-refresh and timed refresh. | `dsh plugin --profile web add @freespace8/dsh-deepseek-balance` |
-| [@freespace8/dsh-free-vision](plugins/dsh-free-vision/README.md) | Local image understanding for vision-less models: OCR, table-layout detection, and semantic description of textless images (macOS Vision, fully on-device), plus paste-image → local path in the Web GUI. | `dsh plugin --profile web add @freespace8/dsh-free-vision` |
-| [@freespace8/dsh-at-file](plugins/dsh-at-file/README.md) | Codex-style `@` path mentions: type `@` in the composer to pick a workspace file/folder, reference its path, and let the host validate & mark it on send (contents are never read). | `dsh plugin --profile web add @freespace8/dsh-at-file` |
+### @freespace8/dsh-deepseek-balance
+
+Official DeepSeek API balance pill in the Web GUI session header.
+Auto-hidden for non-official models; click-to-refresh and timed refresh.
+See [README](plugins/dsh-deepseek-balance/README.md).
+
+![dsh-deepseek-balance preview](plugins/dsh-deepseek-balance/images/preview.png)
+
+### @freespace8/dsh-free-vision
+
+Local image understanding for vision-less models: OCR, table-layout
+detection, and semantic description of textless images (macOS Vision, fully
+on-device), plus paste-image → local path in the Web GUI.
+See [README](plugins/dsh-free-vision/README.md).
+
+![dsh-free-vision preview](plugins/dsh-free-vision/images/preview.png)
+
+### @freespace8/dsh-at-file
+
+Codex-style `@` path mentions: type `@` in the composer to pick a workspace
+file/folder, reference its path, and let the host validate & mark it on send
+(contents are never read). See [README](plugins/dsh-at-file/README.md).
+
+![dsh-at-file preview](plugins/dsh-at-file/images/preview.png)
 
 ## Prerequisites
 
 - [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) with a
   running `web` profile (Node.js `^22.19.0` or `>=24.0.0`).
-- [pnpm](https://pnpm.io/installation) — `dsh plugin` delegates to it
-  (`corepack enable` works too).
 - `dsh-free-vision` additionally requires **macOS 11+** with Xcode Command
   Line Tools (`xcode-select --install`).
-
-## Installation
-
-`dsh plugin` forwards to pnpm, so packages install straight from the npm
-registry:
-
-```sh
-# Install a single plugin
-dsh plugin --profile web add @freespace8/dsh-deepseek-balance
-
-# Install several at once
-dsh plugin --profile web add @freespace8/dsh-deepseek-balance @freespace8/dsh-free-vision @freespace8/dsh-at-file
-```
-
-After installing, **restart the target profile** — `dsh plugin add` only
-updates the manifest and dependencies; a running instance does not hot-load a
-new bundle.
-
-### Update & uninstall
-
-```sh
-# Update to the latest version
-dsh plugin --profile web update @freespace8/dsh-deepseek-balance
-
-# Uninstall
-dsh plugin --profile web remove @freespace8/dsh-deepseek-balance
-```
-
-`add` installs `latest` by default; `update` pulls the newest published
-version.
-
-## Install from source
-
-Want to hack on a plugin or avoid waiting for a release? Clone the repo and
-install with a `file:` path:
-
-```sh
-git clone https://github.com/freespace8/dsh-plugins.git
-dsh plugin --profile web add file:./dsh-plugins/plugins/dsh-deepseek-balance
-```
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full development workflow.
 
 ## Development
 
@@ -119,7 +91,7 @@ plus its own `README.md` and `LICENSE`.
 4. Add an artifact-gate check in `tests/check.mjs` and make sure
    `npm run check` passes.
 5. Publish with `npm publish` (`publishConfig.access` is already `public`),
-   then update the install commands in this README and the plugin README.
+   then add the plugin to the [Plugins](#plugins) section of this README.
 
 ### Conventions
 

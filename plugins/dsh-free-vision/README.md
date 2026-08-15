@@ -15,6 +15,7 @@ without vision (e.g. DeepSeek v4 Flash) can still see.
 ## Table of contents
 
 - [Features](#features)
+- [Preview](#preview)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -35,6 +36,13 @@ without vision (e.g. DeepSeek v4 Flash) can still see.
 - **Paste image → local path** (Web GUI): paste an image with ⌘V in the
   composer; it is saved to a local directory and its absolute path is
   inserted into the draft, ready for the model to call the two tools above.
+
+## Preview
+
+A real `ocr_image` run on a document containing Chinese, English, and a
+table — fully on-device:
+
+![dsh-free-vision preview](images/preview.png)
 
 Inputs accepted: http(s) URLs / base64 / local absolute paths. Security
 boundaries: downloads refuse local/private network addresses (SSRF

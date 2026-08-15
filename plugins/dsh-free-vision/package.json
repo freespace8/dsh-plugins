@@ -14,6 +14,7 @@
     "src",
     "lib",
     "scripts",
+    "images",
     "cordis.patch.yml",
     "LICENSE",
     "README.md",
