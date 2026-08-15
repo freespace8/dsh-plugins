@@ -35,12 +35,13 @@ to the agent's existing tools for the current session.
   `plugins/d` only lists the **direct children** of `plugins` whose names
   contain `d` (no more whole-workspace fuzzy matching). Directories come
   first, files after, each sorted alphabetically.
-- **Keyboard navigation**: with a **directory** highlighted, **Enter** enters
-  that directory (the menu immediately refreshes to its direct children, e.g.
-  `@dir/`); **Tab** confirms the selection immediately — for **both files and
-  directories** it inserts `@path ` and finishes (a directory is never
-  descended into). File + Enter follows the normal selection flow. Mouse
-  click selects directly (inserts `@path `).
+- **Keyboard navigation**: **Enter** on a **directory** enters it — the menu
+  immediately refreshes to its direct children (e.g. `@dir/`) so you can keep
+  descending; **Enter** on a **file** runs the normal selection flow. **Tab**
+  confirms the selection immediately — for **both files and directories** it
+  inserts `@path ` and finishes (a directory is never descended into), so
+  **to pick a directory as-is (without entering it), highlight it and press
+  Tab**. Mouse click selects directly (inserts `@path `).
 - **Real text, zero state**: the draft holds the readable `@path`; the pill is
   only a decorative layer drawn after mirror-measurement — variable width,
   no truncation, no overlap, with margin on all sides (not exceeding the
@@ -95,10 +96,12 @@ shows only the direct children of `plugins` whose names contain `d`;
 `@plugins/` shows all direct children of `plugins`. **While the menu is open,
 Backspace/Delete edits the filter character-by-character.**
 
-Keyboard navigation: with a **directory** highlighted, **Enter** enters it
-(the menu refreshes to its children; keep descending, e.g.
-`@plugins/dsh-at-file/lib/`); **Tab** confirms immediately — for both files
-and directories it inserts `@path ` and a directory is never descended into.
+Keyboard navigation: **Enter** on a **directory** enters it (the menu
+refreshes to its children; keep descending, e.g.
+`@plugins/dsh-at-file/lib/`); **Enter** on a **file** confirms the normal
+selection flow. **Tab** confirms immediately — for both files and
+directories it inserts `@path ` and a directory is never descended into, so
+to select a directory without entering it, highlight it and press **Tab**.
 Mouse click selects the highlighted entry directly.
 
 Selecting an entry turns it into a pill whose width hugs the full

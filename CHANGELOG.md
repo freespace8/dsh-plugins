@@ -47,4 +47,18 @@ Contents of this release:
 - License files unified under the `freespace8` copyright holder, with upstream
   MIT attributions retained and clearly documented.
 
+## [Released 2026-08-16]
+
+Published to npm:
+
+- `@freespace8/dsh-at-file@0.2.3`
+
+### Changed
+
+- `dsh-at-file` — documentation only: clarified the `@` picker keyboard
+  navigation. **Enter** on a directory enters it (keep descending); **Tab**
+  confirms the selection immediately for both files and directories, so a
+  directory can be picked as-is (without entering it) by highlighting it and
+  pressing Tab.
+
 ## [Unreleased]

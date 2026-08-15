@@ -24,6 +24,9 @@ pnpm-debug.log*
 .env.*
 !.env.example
 
+# Local npm cache (used when the default ~/.npm cache is unavailable)
+.npm-cache/
+
 # Test / coverage output
 coverage/
 .tmp/
