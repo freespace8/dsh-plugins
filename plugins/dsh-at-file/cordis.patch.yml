@@ -1,0 +1,15 @@
+# dsh-at-file bundle patch：把 @ 路径引用插件挂进 profile 的 host 组合。
+#
+# 安装（在目标 profile 里）：
+#   dsh plugin --profile web add @freespace8/dsh-at-file
+#
+# 覆盖任意配置字段只需在 profile 自己的 cordis.patch.yml 里按 id 覆盖 config：
+#   - id: dsh-at-file
+#     config:
+#       maxIndexedFiles: 10000
+#       ignoreDirs: []
+- insert:
+    - id: dsh-at-file
+      name: "@freespace8/dsh-at-file"
+      config:
+        maxIndexedFiles: 5000

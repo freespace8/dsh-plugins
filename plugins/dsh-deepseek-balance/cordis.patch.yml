@@ -1,0 +1,14 @@
+# dsh-deepseek-balance bundle patch：把余额插件挂进 profile 的 host 组合。
+#
+# 安装（在目标 profile 里）：
+#   dsh plugin --profile web add @freespace8/dsh-deepseek-balance
+#
+# 覆盖任意字段只需在 profile 自己的 cordis.patch.yml 里按 id 覆盖 config。
+- insert:
+    - id: deepseek-balance
+      name: "@freespace8/dsh-deepseek-balance"
+      config:
+        apiKeyEnv: DEEPSEEK_API_KEY
+        refreshIntervalMs: 300000
+        order: -1
+        shellTimeoutMs: 8000

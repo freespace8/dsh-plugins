@@ -1,0 +1,63 @@
+{
+  "name": "@freespace8/dsh-deepseek-balance",
+  "version": "0.1.0",
+  "description": "Official DeepSeek API balance pill for the DeepSeek Harness Web GUI session header, with click/timed refresh and auto-hide for non-official models. 官方 DeepSeek API 余额胶囊。",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "images",
+    "cordis.patch.yml",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "license": "MIT",
+  "author": "freespace8",
+  "homepage": "https://github.com/freespace8/dsh-plugins#readme",
+  "bugs": {
+    "url": "https://github.com/freespace8/dsh-plugins/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "cordis",
+    "plugin",
+    "deepseek",
+    "balance",
+    "api",
+    "web-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freespace8/dsh-plugins.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1-rc.1",
+    "react": "^18.2.0"
+  },
+  "scripts": {
+    "check": "node tests/check.mjs"
+  }
+}

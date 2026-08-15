@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build artifacts / tarballs
+*.tgz
+dist/
+lib/*.map
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs / debug
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Local environment overrides
+.env
+.env.*
+!.env.example
+
+# Test / coverage output
+coverage/
+.tmp/

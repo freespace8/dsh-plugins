@@ -1,0 +1,67 @@
+{
+  "name": "@freespace8/dsh-at-file",
+  "version": "0.2.0",
+  "description": "Codex-style @ path mentions for the DeepSeek Harness Web GUI: type @ to pick a workspace file/folder and reference its path; the host validates and marks it on send without reading file contents. Codex 风格 @ 路径引用。",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "images",
+    "cordis.patch.yml",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "license": "MIT",
+  "author": "freespace8",
+  "homepage": "https://github.com/freespace8/dsh-plugins#readme",
+  "bugs": {
+    "url": "https://github.com/freespace8/dsh-plugins/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "cordis",
+    "plugin",
+    "at-file",
+    "mention",
+    "codex",
+    "workspace",
+    "web-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freespace8/dsh-plugins.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1-rc.1",
+    "react": "^18.2.0"
+  },
+  "scripts": {
+    "check": "node tests/check.mjs && node tests/unit.mjs"
+  }
+}

@@ -1,0 +1,11 @@
+# dsh-free-vision bundle patch：把本地识图插件挂进 profile 的 host 组合。
+#
+# 安装（在目标 profile 里）：
+#   dsh plugin --profile web add @freespace8/dsh-free-vision
+#
+# 覆盖任意字段只需在 profile 自己的 cordis.patch.yml 里按 id 覆盖 config。
+- insert:
+    - id: free-vision
+      name: "@freespace8/dsh-free-vision"
+      config:
+        timeout: 120000
