@@ -1,6 +1,6 @@
 {
   "name": "@freespace8/dsh-free-vision",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Local image understanding for the DeepSeek Harness: OCR, table-layout detection, and semantic description of textless images via macOS Vision, fully on-device (images never leave your Mac). 本地化识图，图片不出本机。",
   "type": "module",
   "main": "src/index.js",

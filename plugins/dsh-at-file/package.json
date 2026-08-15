@@ -1,6 +1,6 @@
 {
   "name": "@freespace8/dsh-at-file",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Codex-style @ path mentions for the DeepSeek Harness Web GUI: type @ to pick a workspace file/folder and reference its path; the host validates and marks it on send without reading file contents. Codex 风格 @ 路径引用。",
   "type": "module",
   "main": "src/index.js",

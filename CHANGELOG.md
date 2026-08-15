@@ -5,7 +5,15 @@ this file. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Released 2026-08-16]
+
+Published to npm:
+
+- `@freespace8/dsh-deepseek-balance@0.1.1`
+- `@freespace8/dsh-free-vision@0.1.1`
+- `@freespace8/dsh-at-file@0.2.1`
+
+Contents of this release:
 
 ### Added
 
@@ -26,6 +34,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `engines`, expanded `keywords`, and English-first descriptions across all
   published packages.
 - Documentation is now bilingual (English primary + 简体中文) for all packages.
+- Preview images downscaled to 1280 px and optimized (~4× smaller) for faster
+  page loads; `dsh-free-vision` preview replaced with a real GUI usage
+  screenshot.
 
 ### Fixed
 
@@ -33,3 +44,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `SECURITY.md`.
 - License files unified under the `freespace8` copyright holder, with upstream
   MIT attributions retained and clearly documented.
+
+## [Unreleased]
