@@ -65,7 +65,7 @@ to the agent's existing tools for the current session.
 
 The picker as it appears when you type `@` in the composer:
 
-![dsh-at-file @ path reference picker preview](images/preview.png)
+![dsh-at-file @ path reference picker preview](https://raw.githubusercontent.com/freespace8/dsh-plugins/main/plugins/dsh-at-file/images/preview.png)
 
 ## Installation
 

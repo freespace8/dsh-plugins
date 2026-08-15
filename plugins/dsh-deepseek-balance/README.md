@@ -39,7 +39,7 @@ auto-hides for third-party relay/proxy models.
 
 The pill as it appears in the session header (left of the Session log):
 
-<img src="images/preview.png" alt="DeepSeek official balance pill preview" width="640" />
+<img src="https://raw.githubusercontent.com/freespace8/dsh-plugins/main/plugins/dsh-deepseek-balance/images/preview.png" alt="DeepSeek official balance pill preview" width="640" />
 
 > **Visibility**: the pill appears only when the session's current model is an
 > official DeepSeek model (provider `deepseek-official`, i.e.

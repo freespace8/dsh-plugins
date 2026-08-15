@@ -40,7 +40,7 @@ Codex 风格的 `@` 路径引用插件（[DeepSeek Harness](https://github.com/d
 
 插件运行时的效果（输入框输入 `@` 弹出的工作区文件/文件夹选择器）：
 
-![dsh-at-file @ 路径引用选择器预览](images/preview.png)
+![dsh-at-file @ 路径引用选择器预览](https://raw.githubusercontent.com/freespace8/dsh-plugins/main/plugins/dsh-at-file/images/preview.png)
 
 ## 安装
 

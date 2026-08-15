@@ -42,7 +42,7 @@ without vision (e.g. DeepSeek v4 Flash) can still see.
 A real `ocr_image` run on a document containing Chinese, English, and a
 table — fully on-device:
 
-![dsh-free-vision preview](images/preview.png)
+![dsh-free-vision preview](https://raw.githubusercontent.com/freespace8/dsh-plugins/main/plugins/dsh-free-vision/images/preview.png)
 
 Inputs accepted: http(s) URLs / base64 / local absolute paths. Security
 boundaries: downloads refuse local/private network addresses (SSRF

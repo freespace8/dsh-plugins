@@ -31,7 +31,7 @@ DeepSeek Harness 插件：在 Web GUI 的会话头部（Session log 左侧）以
 
 插件运行时的效果（会话头部 Session log 左侧的余额胶囊）：
 
-<img src="images/preview.png" alt="DeepSeek 官方余额胶囊预览" width="640" />
+<img src="https://raw.githubusercontent.com/freespace8/dsh-plugins/main/plugins/dsh-deepseek-balance/images/preview.png" alt="DeepSeek 官方余额胶囊预览" width="640" />
 
 > **显示条件**：余额胶囊只会在**会话当前模型为官方 DeepSeek** 时显示——即 provider 为 `deepseek-official`（`api.deepseek.com`）。如果对话选择的是**非官方 DeepSeek**（第三方中转/代理模型），胶囊不会显示；只有切回官方 DeepSeek 模型才会重新出现。
 

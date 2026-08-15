@@ -30,7 +30,7 @@
 
 对一张含中文、英文与表格的文档运行 `ocr_image` 的真实效果——完全本地处理：
 
-![dsh-free-vision 预览](images/preview.png)
+![dsh-free-vision 预览](https://raw.githubusercontent.com/freespace8/dsh-plugins/main/plugins/dsh-free-vision/images/preview.png)
 
 输入支持：http(s) 链接 / base64 / 本机绝对路径。安全边界：下载拒绝本机/内网地址（防 SSRF）；上传仅接受 loopback、按字节大小限流、按魔数嗅探扩展名（不信任客户端文件名）。
 

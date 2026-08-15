@@ -9,9 +9,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Published to npm:
 
-- `@freespace8/dsh-deepseek-balance@0.1.1`
-- `@freespace8/dsh-free-vision@0.1.1`
-- `@freespace8/dsh-at-file@0.2.1`
+- `@freespace8/dsh-deepseek-balance@0.1.2`
+- `@freespace8/dsh-free-vision@0.1.2`
+- `@freespace8/dsh-at-file@0.2.2`
 
 Contents of this release:
 
@@ -37,6 +37,8 @@ Contents of this release:
 - Preview images downscaled to 1280 px and optimized (~4× smaller) for faster
   page loads; `dsh-free-vision` preview replaced with a real GUI usage
   screenshot.
+- README preview images now use absolute GitHub URLs so they render on
+  npmjs.com (relative paths are not resolved there).
 
 ### Fixed
 

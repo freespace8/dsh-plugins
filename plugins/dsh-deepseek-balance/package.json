@@ -1,6 +1,6 @@
 {
   "name": "@freespace8/dsh-deepseek-balance",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Official DeepSeek API balance pill for the DeepSeek Harness Web GUI session header, with click/timed refresh and auto-hide for non-official models. 官方 DeepSeek API 余额胶囊。",
   "type": "module",
   "main": "src/index.js",
