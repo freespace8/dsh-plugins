@@ -5,6 +5,24 @@ this file. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- `@freespace8/dsh-sidebar-helper@0.1.0` — right-click context menus for the
+  Web GUI workspace sidebar, built by **reusing the built-in "⋯" row menus**:
+  the **workspace menu itself carries Copy Path** — a global `MutationObserver`
+  injects it as the first item (next to Rename) whenever a workspace row's
+  menu opens, whether via left-click on "⋯", right-click on the row, or
+  keyboard, and it writes the workspace directory into the clipboard with a
+  brief "已复制 / Copied" state before closing. Conversation (session) rows
+  keep their own untouched menu (Rename / Fork / Archive — identical to the
+  three dots). The injected item is pinned through React re-renders by a
+  `MutationObserver` and cleaned up on menu close / plugin dispose. Rows are
+  identified through stable semantic attributes (`role="treeitem"` +
+  `aria-expanded`/`aria-selected`) against live workspace snapshots — no
+  hashed CSS classes, zero client-side dependencies.
+
 ## [Released 2026-08-16]
 
 Published to npm:

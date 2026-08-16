@@ -1,0 +1,65 @@
+{
+  "name": "@freespace8/dsh-sidebar-helper",
+  "version": "0.1.0",
+  "description": "Right-click context menus for the DeepSeek Harness Web GUI sidebar: the workspace row's \u201c\u22ef\u201d menu carries Copy Path (next to Rename); conversation rows reuse the built-in menu unchanged. \u5de6\u4fa7\u5de5\u4f5c\u533a\u884c\u7ea7\u53f3\u952e\u83dc\u5355 + \u590d\u5236\u8def\u5f84\u3002",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "images",
+    "cordis.patch.yml",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "license": "MIT",
+  "author": "freespace8",
+  "homepage": "https://github.com/freespace8/dsh-plugins#readme",
+  "bugs": {
+    "url": "https://github.com/freespace8/dsh-plugins/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "cordis",
+    "plugin",
+    "context-menu",
+    "copy-path",
+    "workspace",
+    "sidebar",
+    "web-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freespace8/dsh-plugins.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1-rc.1",
+    "react": "^18.2.0"
+  },
+  "scripts": {
+    "check": "node tests/check.mjs"
+  }
+}

@@ -43,6 +43,12 @@ Codex 风格 `@` 路径引用：输入框输入 `@` 选择工作区文件/文件
 
 ![dsh-at-file 预览](plugins/dsh-at-file/images/preview.png)
 
+### @freespace8/dsh-sidebar-helper
+
+左侧工作区侧栏的行级右键菜单，**复用内置「⋯」菜单**：工作区（项目）行的「⋯」菜单本身就带 **复制路径**（注入为第一项、紧邻重命名，左键点「⋯」/ 右键点行 / 键盘打开都生效）；对话（会话）行右键弹出与三个点完全一样的菜单（重命名 / 分叉 / 归档），不注入任何项。详见 [README](plugins/dsh-sidebar-helper/README.md)。
+
+![dsh-sidebar-helper 预览](plugins/dsh-sidebar-helper/images/preview.png)
+
 ## 前置条件
 
 - [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)，带运行中的 `web` profile（Node.js `^22.19.0` 或 `>=24.0.0`）。
@@ -56,7 +62,8 @@ Codex 风格 `@` 路径引用：输入框输入 `@` 选择工作区文件/文件
 plugins/
 ├── dsh-deepseek-balance/   # 官方 DeepSeek API 余额胶囊
 ├── dsh-free-vision/        # 本地 macOS Vision 识图
-└── dsh-at-file/            # Codex 风格 @ 路径引用
+├── dsh-at-file/            # Codex 风格 @ 路径引用
+└── dsh-sidebar-helper/     # 侧栏行级右键菜单 + 复制路径
 ```
 
 每个插件自包含：`src/`（host）、`lib/client.js`（浏览器 bundle）、`cordis.patch.yml`（bundle patch 行）、`tests/`（产物门检查），以及各自的 `README.md` 与 `LICENSE`。

@@ -1,0 +1,14 @@
+# dsh-sidebar-helper bundle patch：把左侧工作区的右键菜单插件挂进 profile。
+#
+# 安装（在目标 profile 里）：
+#   dsh plugin --profile web add @freespace8/dsh-sidebar-helper
+#
+# 覆盖配置只需在 profile 自己的 cordis.patch.yml 里按 id 覆盖 config：
+#   - id: sidebar-helper
+#     config:
+#       enabled: false
+- insert:
+    - id: sidebar-helper
+      name: "@freespace8/dsh-sidebar-helper"
+      config:
+        enabled: true

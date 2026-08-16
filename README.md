@@ -53,6 +53,17 @@ file/folder, reference its path, and let the host validate & mark it on send
 
 ![dsh-at-file preview](plugins/dsh-at-file/images/preview.png)
 
+### @freespace8/dsh-sidebar-helper
+
+Right-click context menus for the workspace sidebar, built by reusing the
+built-in "⋯" row menus: the **workspace menu itself carries Copy Path**
+(injected as the first item, next to Rename — via left-click on "⋯",
+right-click on the row, or keyboard), and conversation rows open the row's
+own untouched menu (Rename / Fork / Archive — identical to the three dots).
+See [README](plugins/dsh-sidebar-helper/README.md).
+
+![dsh-sidebar-helper preview](plugins/dsh-sidebar-helper/images/preview.png)
+
 ## Prerequisites
 
 - [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) with a
@@ -68,7 +79,8 @@ file/folder, reference its path, and let the host validate & mark it on send
 plugins/
 ├── dsh-deepseek-balance/   # official DeepSeek API balance pill
 ├── dsh-free-vision/        # local macOS Vision OCR / image understanding
-└── dsh-at-file/            # Codex-style @ path mentions
+├── dsh-at-file/            # Codex-style @ path mentions
+└── dsh-sidebar-helper/     # sidebar right-click context menus + copy path
 ```
 
 Each plugin is self-contained: `src/` (host), `lib/client.js` (browser
