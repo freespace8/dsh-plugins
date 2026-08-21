@@ -2,10 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A DeepSeek Harness plugin that shows your **official DeepSeek API balance** as
-a pill in the Web GUI session header (left of the Session log). It is shown
-only when the current session model is an official DeepSeek model and
-auto-hides for third-party relay/proxy models.
+A DeepSeek Harness plugin that shows your **official DeepSeek API balance**
+and the current pricing window as a pill in the Web GUI session header
+(left of the Session log).
 
 **English** · [简体中文](README.zh-CN.md)
 
@@ -26,10 +25,11 @@ auto-hides for third-party relay/proxy models.
 
 - Displays the official DeepSeek balance as `¥xx.xx` (no currency suffix) in
   the session header;
-- Shown **only when the session's current model is an official DeepSeek model**
-  (provider `deepseek-official`, i.e. `api.deepseek.com`) — third-party
-  relay/proxy models hide it automatically;
-- Hover shows the granted/topped-up breakdown and the last refresh latency;
+- Shows the current Beijing-time pricing window: green **平价** (off-peak)
+  or red **高价** (peak), with a live `hh:mm:ss` countdown to the next
+  switch (peak 09:00–12:00 and 14:00–18:00, off-peak otherwise);
+- Hover shows the granted/topped-up breakdown, last refresh latency, and the
+  clock time when the current window ends;
 - Click the refresh button in the pill to refresh immediately (with a spinner
   animation); auto-refreshes every 5 minutes;
 - **No caching**: every refresh really calls the official endpoint; on failure
@@ -41,11 +41,8 @@ The pill as it appears in the session header (left of the Session log):
 
 <img src="https://raw.githubusercontent.com/freespace8/dsh-plugins/main/plugins/dsh-deepseek-balance/images/preview.png" alt="DeepSeek official balance pill preview" width="640" />
 
-> **Visibility**: the pill appears only when the session's current model is an
-> official DeepSeek model (provider `deepseek-official`, i.e.
-> `api.deepseek.com`). If you switch to a non-official DeepSeek relay/proxy
-> model the pill hides; it reappears when you switch back to an official
-> model.
+> The pill stays in the session header for every model. Balance always comes
+> from the official DeepSeek endpoint.
 
 ## Requirements
 
@@ -91,14 +88,12 @@ block is replaced wholesale):
   registers the HTTP route `/plugins/dsh-deepseek-balance/balance` to deliver
   the result (including the refresh-interval config) to the browser;
 - **Client half** (`lib/client.js`): registers a
-  `conversation.session.header.utilities` slot entry; reads the session's
-  current model via `ctx.modelDirectories` to decide visibility; fetches the
-  balance route to render the pill.
+  `conversation.session.header.utilities` slot entry; fetches the
+  balance route to render the pill; computes the 高价/平价 window from
+  the Beijing clock locally (no pricing-page request).
 
 Balance data always comes from the **official DeepSeek endpoint** (using the
-stored official key), regardless of which provider the model traffic goes
-through; visibility depends only on whether the session's current model is an
-official DeepSeek model.
+stored official key), regardless of which model the session is using.
 
 ## Verification
 
@@ -108,8 +103,7 @@ npm run check   # artifact gate: syntax, export shapes, exports/files, patch lin
 
 Real-behavior verification (after installing into a profile): restart the web
 profile → open an **existing session** → the balance pill appears in the
-header; switch the model to a third-party relay model → the pill disappears;
-switch back to official DeepSeek → the pill returns.
+header.
 
 ## License
 

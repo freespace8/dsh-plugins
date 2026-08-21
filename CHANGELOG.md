@@ -7,6 +7,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- `@freespace8/dsh-deepseek-balance` — session-header pill now shows the
+  current DeepSeek pricing window (Beijing time) as a strong green **平价**
+  or red **高价** countdown (`hh:mm:ss`). Peak hours are 09:00–12:00 and
+  14:00–18:00; everything else is off-peak. The "DeepSeek" prefix was
+  dropped so the chip stays short (`余额 ¥12.32  平价 14:55:03`). The pill
+  is always shown; it no longer hides for non-official models.
+
 ### Added
 
 - `@freespace8/dsh-sidebar-helper@0.1.0` — right-click context menus for the

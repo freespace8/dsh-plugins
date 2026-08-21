@@ -30,8 +30,8 @@ Each package ships a host half (Cordis plugin, plain ESM) and a client half
 
 ### @freespace8/dsh-deepseek-balance
 
-Official DeepSeek API balance pill in the Web GUI session header.
-Auto-hidden for non-official models; click-to-refresh and timed refresh.
+Official DeepSeek API balance pill in the Web GUI session header,
+with a 高价/平价 countdown; click-to-refresh and timed refresh.
 See [README](plugins/dsh-deepseek-balance/README.md).
 
 ![dsh-deepseek-balance preview](plugins/dsh-deepseek-balance/images/preview.png)

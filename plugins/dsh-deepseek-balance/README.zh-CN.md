@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-DeepSeek Harness 插件：在 Web GUI 的会话头部（Session log 左侧）以胶囊形式显示**官方 DeepSeek API 余额**。仅当会话当前模型为官方 DeepSeek 时显示，第三方中转/代理模型自动隐藏。
+DeepSeek Harness 插件：在 Web GUI 的会话头部（Session log 左侧）以胶囊形式显示**官方 DeepSeek API 余额**与当前计价时段。
 
 [English](README.md) · **简体中文**
 
@@ -22,8 +22,8 @@ DeepSeek Harness 插件：在 Web GUI 的会话头部（Session log 左侧）以
 ## 功能
 
 - 会话头部显示官方余额 `¥xx.xx`（无货币后缀）；
-- **仅当会话当前模型是官方 DeepSeek**（provider 为 `deepseek-official`，即 `api.deepseek.com`）时显示；第三方中转/代理模型自动隐藏；
-- 鼠标悬停显示赠送/充值明细与上次刷新耗时；
+- 按北京时间显示当前计价时段：空闲为绿色 **平价**、高峰为红色 **高价**，并倒计时 `hh:mm:ss` 到下一次切换（高价 09:00–12:00、14:00–18:00，其余平价）；
+- 鼠标悬停显示赠送/充值明细、上次刷新耗时，以及平价起止时刻；
 - 胶囊内刷新按钮点击立即刷新（图标旋转动画），并每 5 分钟自动刷新一次；
 - **无缓存**：每次刷新都真实请求官方接口；失败时保留上次余额并红点提示。
 
@@ -33,7 +33,7 @@ DeepSeek Harness 插件：在 Web GUI 的会话头部（Session log 左侧）以
 
 <img src="https://raw.githubusercontent.com/freespace8/dsh-plugins/main/plugins/dsh-deepseek-balance/images/preview.png" alt="DeepSeek 官方余额胶囊预览" width="640" />
 
-> **显示条件**：余额胶囊只会在**会话当前模型为官方 DeepSeek** 时显示——即 provider 为 `deepseek-official`（`api.deepseek.com`）。如果对话选择的是**非官方 DeepSeek**（第三方中转/代理模型），胶囊不会显示；只有切回官方 DeepSeek 模型才会重新出现。
+> 胶囊在会话头部常驻显示，不随当前模型切换隐藏。余额始终来自官方 DeepSeek 接口。
 
 ## 前置条件
 
@@ -73,10 +73,9 @@ profile 的 `cordis.patch.yml` 里按 id 覆盖（整段替换 config）：
   `curl https://api.deepseek.com/user/balance`，注册 HTTP 路由
   `/plugins/dsh-deepseek-balance/balance` 把结果（含刷新间隔配置）发给浏览器；
 - **client 半体**（`lib/client.js`）：注册 `conversation.session.header.utilities` slot 条目；
-  用 `ctx.modelDirectories` 读会话当前模型做显示判定；`fetch` 余额路由渲染胶囊。
+  `fetch` 余额路由渲染胶囊；计价时段（高价/平价）按北京时间在浏览器本地计算，不请求定价接口。
 
-余额数据始终来自**官方 DeepSeek 接口**（用存储的官方 Key），与模型流量走哪个供应商无关；
-显示与否只看会话当前模型是否官方 DeepSeek。
+余额数据始终来自**官方 DeepSeek 接口**（用存储的官方 Key），与当前会话模型无关。
 
 ## 验证
 
@@ -84,8 +83,7 @@ profile 的 `cordis.patch.yml` 里按 id 覆盖（整段替换 config）：
 npm run check   # 产物门检查（语法、导出形状、exports/files、patch 行、client id）
 ```
 
-真实生效验证（装进 profile 后）：重启 web profile → 打开一个**已建会话** → 头部出现余额胶囊；
-把模型切到第三方中转模型 → 胶囊消失；切回官方 DeepSeek → 胶囊恢复。
+真实生效验证（装进 profile 后）：重启 web profile → 打开一个**已建会话** → 头部出现余额胶囊。
 
 ## 许可证
 

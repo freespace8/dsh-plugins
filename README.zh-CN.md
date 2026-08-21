@@ -27,7 +27,7 @@
 
 ### @freespace8/dsh-deepseek-balance
 
-Web GUI 会话头部显示官方 DeepSeek API 余额胶囊；非官方模型自动隐藏；点击刷新 + 定时刷新。详见 [README](plugins/dsh-deepseek-balance/README.md)。
+Web GUI 会话头部显示官方 DeepSeek API 余额胶囊与高价/平价倒计时；点击刷新 + 定时刷新。详见 [README](plugins/dsh-deepseek-balance/README.md)。
 
 ![dsh-deepseek-balance 预览](plugins/dsh-deepseek-balance/images/preview.png)
 

@@ -5,6 +5,7 @@ import { readFileSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { spawnSync } from 'node:child_process'
+import vm from 'node:vm'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const require = createRequire(import.meta.url)
@@ -92,6 +93,75 @@ if (!clientSrc.includes('__ModuleLoader__.load')) fail('client bundle 缺少 __M
 else ok('client bundle 含 __ModuleLoader__.load')
 if (!clientSrc.includes(`id: '${pkg.name}'`)) fail(`client bundle id 不是 ${pkg.name}`)
 else ok(`client bundle id = ${pkg.name}（与包名一致）`)
+
+// 5. 计价时段纯函数单测。bundle 是经典脚本（浏览器用），Node 下经 vm 沙箱执行，
+//    走到 module.exports 分支导出纯函数（ESM import 拿不到 module.exports）。
+const bundleSandbox = { module: { exports: {} }, console }
+vm.createContext(bundleSandbox)
+vm.runInContext(clientSrc, bundleSandbox, { filename: 'lib/client.js' })
+const bundle = bundleSandbox.module.exports
+const { beijingWallToMs, getPeriod, formatRemain, periodLabel, formatBeijingHm } = bundle
+const assert = (cond, msg) => { if (cond) ok(msg); else fail(msg) }
+const HOUR = 60 * 60 * 1000
+
+{
+  const t = beijingWallToMs(2026, 8, 21, 8, 59, 59)
+  const p = getPeriod(t)
+  assert(p.kind === 'idle', '08:59 为空闲')
+  assert(p.remainMs === 1000, '08:59:59 距 09:00 为 1s')
+  assert(formatBeijingHm(p.untilMs) === '09:00', '凌晨空闲截止 09:00')
+}
+{
+  const t = beijingWallToMs(2026, 8, 21, 9, 0, 0)
+  const p = getPeriod(t)
+  assert(p.kind === 'peak', '09:00 为高峰')
+  assert(p.remainMs === 3 * HOUR, '09:00 距 12:00 为 3h')
+  assert(periodLabel(p) === '高价 03:00:00', '09:00 标签 高价 03:00:00')
+}
+{
+  const t = beijingWallToMs(2026, 8, 21, 11, 59, 59)
+  const p = getPeriod(t)
+  assert(p.kind === 'peak', '11:59 仍为高峰')
+  assert(p.remainMs === 1000, '11:59:59 距 12:00 为 1s')
+}
+{
+  const t = beijingWallToMs(2026, 8, 21, 12, 0, 0)
+  const p = getPeriod(t)
+  assert(p.kind === 'idle', '12:00 切到空闲')
+  assert(p.remainMs === 2 * HOUR, '午间空闲 2h')
+  assert(periodLabel(p) === '平价 02:00:00', '12:00 标签 平价 02:00:00')
+}
+{
+  const t = beijingWallToMs(2026, 8, 21, 14, 0, 0)
+  const p = getPeriod(t)
+  assert(p.kind === 'peak', '14:00 为高峰')
+  assert(p.remainMs === 4 * HOUR, '14:00 距 18:00 为 4h')
+}
+{
+  const t = beijingWallToMs(2026, 8, 21, 18, 0, 0)
+  const p = getPeriod(t)
+  assert(p.kind === 'idle', '18:00 切到空闲')
+  assert(p.remainMs === 15 * HOUR, '18:00 距次日 09:00 为 15h')
+  assert(formatBeijingHm(p.untilMs) === '09:00', '晚间空闲截止次日 09:00')
+  assert(periodLabel(p) === '平价 15:00:00', '18:00 标签 平价 15:00:00')
+}
+{
+  const t = beijingWallToMs(2026, 8, 22, 0, 0, 0)
+  const p = getPeriod(t)
+  assert(p.kind === 'idle', '00:00 为空闲')
+  assert(p.remainMs === 9 * HOUR, '00:00 距 09:00 为 9h')
+}
+{
+  assert(formatRemain(0) === '00:00:00', 'formatRemain 0')
+  assert(formatRemain(1000) === '00:00:01', 'formatRemain 1秒')
+  assert(formatRemain(59000) === '00:00:59', 'formatRemain 59秒')
+  assert(formatRemain(60000) === '00:01:00', 'formatRemain 1分')
+  assert(formatRemain(61000) === '00:01:01', 'formatRemain 1分1秒')
+  assert(formatRemain(HOUR) === '01:00:00', 'formatRemain 1小时')
+  assert(formatRemain(HOUR + 60000) === '01:01:00', 'formatRemain 1小时1分')
+  assert(formatRemain(15 * HOUR) === '15:00:00', 'formatRemain 15小时')
+  assert(formatRemain(1) === '00:00:01', 'formatRemain 向上取整到 1秒')
+}
 
 if (failures > 0) {
   console.error(`\n${failures} 项检查失败`)
